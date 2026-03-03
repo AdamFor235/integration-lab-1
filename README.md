@@ -11,6 +11,7 @@ Projekt stworzony w ramach nauki **Git**, **GitHub** oraz **Django**.
 
 ## Instalacja
 
+
 Utworzenie środowiska wirtualnego:
 
 `python -m venv venv`
