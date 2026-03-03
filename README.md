@@ -1,7 +1,7 @@
 # Mój Projekt Django
 
 ## Opis projektu
-Projekt stworzony w ramach nauki **Git**, **GitHub** oraz **Django**.
+Projekt stworzony w ramach nauki   **Git**, **GitHub** oraz **Django**.
 
 ## Technologie
 * -Python
