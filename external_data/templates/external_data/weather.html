@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Pogoda</title>
+</head>
+<body>
+<h1>Pogoda dla {{ place }}</h1>
+<p>API: </p>
+<p>{{ weather_url }}</p>
+<h2>Dane ogólne</h2>
+<table border="1">
+    <tr>
+        <th>Nazwa</th>
+        <th>Wartość</th>
+    </tr>
+    {% for key, value in general_data.items %}
+     <tr>
+        <td>{{ key }}</td>
+        <td>{{ value }}</td>
+    </tr>
+    {% endfor %}
+</table><br><br>
+
+
+
+
+<h2>Dane godzinowe</h2>
+<table border="1">
+    <tr>
+        <td>time</td>
+        <td>temperature_2m</td>
+        <td>rain</td>
+        <td>weather_code</td>
+        <td>wind_speed_10m: km/h</td>
+    </tr>
+    {% for row in hourly_data %}
+    <tr>
+        <td>{{ row.time }}</td>
+        <td>{{ row.temperature_2m }}</td>
+        <td>{{ row.rain }}</td>
+        <td>{{ row.weather_code }}</td>
+        <td>{{ row.wind_speed_10m }}</td>
+    </tr>
+    {% endfor %}
+</table> 
+    
+</body>
+</html>
