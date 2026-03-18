@@ -49,27 +49,40 @@ def weather_view(request):
         f"&hourly=temperature_2m,rain,weather_code,wind_speed_10m"
     )
     
-    gdynia_weather= requests.get(weather_url).json()
+    
     data = {}
     hourly = {}
-    for key, value in gdynia_weather.items():
-        if key != 'hourly':
-            data[key] = value
-        else:
-            for key1, value1 in value.items():
-                hourly[key1] = value1  
-
-    num_hours = len(hourly['time'])
     rows = []
-    for i in range(num_hours):
-        row = {
-            "time": hourly['time'][i],
-            "temperature_2m": hourly['temperature_2m'][i],
-            "rain": hourly['rain'][i],
-            "weather_code": hourly['weather_code'][i],
-            "wind_speed_10m": hourly['wind_speed_10m'][i],
-        }
-        rows.append(row)
+
+    try:
+        response = requests.get(weather_url)
+
+        if response.status_code == 200:
+            gdynia_weather = response.json()
+
+            for key, value in gdynia_weather.items():
+                if key != 'hourly':
+                    data[key] = value
+                else:
+                    for key1, value1 in value.items():
+                        hourly[key1] = value1  
+
+            num_hours = len(hourly['time'])
+            for i in range(num_hours):
+                row = {
+                    "time": hourly['time'][i],
+                    "temperature_2m": hourly['temperature_2m'][i],
+                    "rain": hourly['rain'][i],
+                    "weather_code": hourly['weather_code'][i],
+                    "wind_speed_10m": hourly['wind_speed_10m'][i],
+                }
+                rows.append(row)
+        else:
+            data["error"] = f"Błąd API: {response.status_code}"
+
+    except requests.exceptions.RequestException as e:
+        data["error"] = f"Błąd połączenia: {e}"
+
     Dane = {
         "place": place,
         "weather_url": weather_url,
