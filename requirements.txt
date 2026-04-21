@@ -1,7 +1,7 @@
 asgiref==3.11.1
 certifi==2026.2.25
 charset-normalizer==3.4.5
-Django==6.0.2
+Django==5.2.13
 flake8==7.3.0
 idna==3.11
 mccabe==0.7.0
