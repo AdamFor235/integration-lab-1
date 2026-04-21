@@ -39,6 +39,7 @@ coordinates = {
     "Tokyo": ("35.65", "139.84")
 }
 
+
 def weather_view(request):
     place = "Gdynia"
 
@@ -48,8 +49,7 @@ def weather_view(request):
         f"&longitude={coordinates[place][1]}"
         f"&hourly=temperature_2m,rain,weather_code,wind_speed_10m"
     )
-    
-    
+
     data = {}
     hourly = {}
     rows = []
@@ -65,7 +65,7 @@ def weather_view(request):
                     data[key] = value
                 else:
                     for key1, value1 in value.items():
-                        hourly[key1] = value1  
+                        hourly[key1] = value1
 
             num_hours = len(hourly['time'])
             for i in range(num_hours):
